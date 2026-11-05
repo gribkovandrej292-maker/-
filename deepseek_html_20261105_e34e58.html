@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2a2010">
+<title>Барбершоп «Борода» — Казань, ул. Баумана, 15</title>
+<meta name="description" content="Барбершоп «Борода» в Казани: мужские стрижки, оформление бороды, комплекс. Онлайн-запись, ежедневно с 10:00 до 21:00.">
+<style>
+  :root{
+    --bg-fallback:#1a1509;
+    --surface:#17140e;
+    --surface-2:#0f0c07;
+    --line:#3a3122;
+    --line-soft:#2b2418;
+    --text:#ecebe6;
+    --muted:#c0bcb2;
+    --accent:#e0bd85;
+    --accent-soft:#f3e6cc;
+    --radius:12px;
+    --container:1120px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+
+  html{
+    scroll-behavior:smooth;
+    scroll-padding-top:84px;
+    background:var(--bg-fallback);
+    -webkit-text-size-adjust:100%;
+  }
+
+  body{
+    margin:0;
+    min-height:100vh;
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+
+    background-color:var(--bg-fallback);
+    background-image:
+      radial-gradient(900px 520px at 12% -8%, rgba(214,178,110,.22), transparent 62%),
+      radial-gradient(720px 440px at 96% 2%, rgba(196,154,74,.16), transparent 58%),
+      linear-gradient(172deg, #151009 0%, #2a2010 28%, #46330f 62%, #5d4517 100%);
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+  }
+
+  h1,h2,h3,p,ul{margin:0;}
+  ul{padding:0; list-style:none;}
+  a{color:inherit;}
+
+  .container{
+    width:100%;
+    max-width:var(--container);
+    margin:0 auto;
+    padding:0 20px;
+  }
+
+  :focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+
+  /* ---------- Header ---------- */
+  .header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(18,14,8,.92);
+    -webkit-backdrop-filter:blur(10px);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .header__inner{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    height:68px;
+  }
+  .logo{
+    margin-right:auto;
+    font-size:17px;
+    font-weight:700;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    text-decoration:none;
+  }
+  .logo span{color:var(--accent);}
+  .nav{display:flex; gap:26px;}
+  .nav a{
+    position:relative;
+    color:var(--muted);
+    text-decoration:none;
+    font-size:15px;
+    transition:color .2s ease;
+  }
+  .nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    width:0;
+    height:1px;
+    background:var(--accent);
+    transition:width .25s ease;
+  }
+  .nav a:hover{color:var(--accent-soft);}
+  .nav a:hover::after{width:100%;}
+
+  .header__phone{
+    font-size:15px;
+    font-weight:600;
+    text-decoration:none;
+    white-space:nowrap;
+    transition:color .2s ease;
+  }
+  .header__phone:hover{color:var(--accent);}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:15px 30px;
+    border:1px solid transparent;
+    border-radius:8px;
+    background:var(--accent-soft);
+    color:#1a1408;
+    font-family:inherit;
+    font-size:16px;
+    font-weight:600;
+    text-decoration:none;
+    cursor:pointer;
+    transition:background-color .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .btn:hover{background:#fdf6e7;}
+  .btn:active{transform:translateY(1px);}
+  .btn--ghost{
+    background:transparent;
+    color:var(--text);
+    border-color:rgba(236,235,230,.35);
+  }
+  .btn--ghost:hover{
+    background:transparent;
+    color:var(--accent-soft);
+    border-color:var(--accent);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:clamp(56px,10vw,116px) 0 clamp(48px,8vw,88px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .eyebrow{
+    margin-bottom:18px;
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+  .hero h1{
+    max-width:840px;
+    margin-bottom:20px;
+    font-size:clamp(32px,6.4vw,60px);
+    line-height:1.08;
+    letter-spacing:-.02em;
+    font-weight:700;
+  }
+  .hero__lead{
+    max-width:560px;
+    margin-bottom:32px;
+    color:var(--muted);
+    font-size:clamp(15px,2vw,18px);
+  }
+  .hero__actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .hero__stats{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:20px;
+    max-width:720px;
+    margin-top:clamp(36px,6vw,56px);
+    padding-top:28px;
+    border-top:1px solid var(--line-soft);
+  }
+  .hero__stats div{display:flex; flex-direction:column; gap:4px;}
+  .hero__stats strong{font-size:17px; font-weight:600;}
+  .hero__stats span{font-size:13.5px; color:var(--muted);}
+
+  /* ---------- Sections ---------- */
+  .section{padding:clamp(52px,8vw,96px) 0;}
+  .section__head{
+    max-width:640px;
+    margin-bottom:clamp(28px,4vw,44px);
+  }
+  .section h2{
+    margin-bottom:10px;
+    font-size:clamp(25px,4vw,38px);
+    line-height:1.15;
+    letter-spacing:-.01em;
+    font-weight:700;
+  }
+  .section__head p{color:var(--muted);}
+
+  /* ---------- Services ---------- */
+  .services{
+    display:grid;
+    gap:18px;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  }
+  .service{
+    overflow:hidden;
+    padding:26px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .service__inner{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    height:100%;
+    will-change:transform;
+  }
+  .service__top{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+  }
+  .service__name{font-size:19px; font-weight:600;}
+  .service__price{
+    font-size:20px;
+    font-weight:700;
+    color:var(--accent);
+    white-space:nowrap;
+  }
+  .service__desc{color:var(--muted); font-size:14.5px;}
+  .service__time{
+    margin-top:auto;
+    padding-top:10px;
+    font-size:13px;
+    color:#9a9488;
+  }
+
+  /* ---------- Masters ---------- */
+  .masters{
+    display:grid;
+    gap:18px;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  }
+  .master{
+    overflow:hidden;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+  }
+  .master__photo-wrap{
+    overflow:hidden;
+    aspect-ratio:4 / 3;
+    border-bottom:1px solid var(--line);
+    background:#231d12;
+  }
+  .master__photo{
+    width:100%;
+    height:100%;
+    background-color:#231d12;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23231d12'/%3E%3Ccircle cx='200' cy='118' r='48' fill='%233a2f1c'/%3E%3Cpath d='M200 182c-52 0-94 36-94 80v38h188v-38c0-44-42-80-94-80z' fill='%233a2f1c'/%3E%3C/svg%3E");
+    background-size:130%;
+    background-position:center 30%;
+    background-repeat:no-repeat;
+    will-change:background-position;
+  }
+  .master__body{
+    padding:22px 24px 26px;
+    will-change:transform;
+  }
+  .master__name{margin-bottom:4px; font-size:19px; font-weight:600;}
+  .master__role{
+    margin-bottom:12px;
+    font-size:12.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+  .master__desc{color:var(--muted); font-size:14.5px;}
+
+  /* ---------- Booking ---------- */
+  .booking{
+    display:grid;
+    grid-template-columns:1fr 1.2fr;
+    gap:clamp(24px,4vw,48px);
+    align-items:start;
+  }
+  .booking__info p{color:var(--muted); max-width:420px;}
+  .booking__list{
+    margin-top:24px;
+    display:grid;
+    gap:12px;
+    max-width:420px;
+  }
+  .booking__list li{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    font-size:15px;
+    color:var(--muted);
+  }
+  .booking__list li::before{
+    content:"";
+    flex:none;
+    width:6px;
+    height:6px;
+    margin-top:8px;
+    border-radius:50%;
+    background:var(--accent);
+  }
+
+  .form{
+    padding:clamp(20px,4vw,32px);
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+  }
+  .form__grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  .field{display:flex; flex-direction:column; gap:8px;}
+  .field label{
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .field input,
+  .field select{
+    width:100%;
+    padding:13px 14px;
+    background:var(--surface-2);
+    border:1px solid #3d3322;
+    border-radius:8px;
+    color:var(--text);
+    font-family:inherit;
+    font-size:16px;
+    line-height:1.4;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .field select{
+    appearance:none;
+    -webkit-appearance:none;
+    padding-right:42px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23c0bcb2' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 16px center;
+  }
+  .field input::placeholder{color:#857e70;}
+  .field input:focus,
+  .field select:focus{
+    outline:none;
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(224,189,133,.18);
+  }
+  .field input.is-invalid{border-color:#c07a6d;}
+  .form .btn{
+    width:100%;
+    margin-top:20px;
+  }
+  .form__note{
+    margin-top:14px;
+    font-size:13px;
+    color:#9a9488;
+  }
+  .form__status{
+    display:none;
+    margin-top:16px;
+    font-size:15px;
+  }
+  .form__status.is-error{display:block; color:#e8a396;}
+  .form__status.is-success{display:block; color:var(--accent);}
+
+  /* ---------- Contacts ---------- */
+  .contacts{
+    display:grid;
+    grid-template-columns:1fr 1.5fr;
+    gap:clamp(24px,4vw,48px);
+    align-items:start;
+  }
+  .contacts__list{display:grid; gap:22px; margin-top:8px;}
+  .contacts__item dt{
+    margin-bottom:4px;
+    font-size:12.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .contacts__item dd{
+    margin:0;
+    font-size:17px;
+    line-height:1.45;
+  }
+  .contacts__item a{text-decoration:none;}
+  .contacts__item a:hover{color:var(--accent);}
+  .contacts__socials{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:26px;
+  }
+  .contacts__socials a{
+    padding:9px 16px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    font-size:14px;
+    color:var(--muted);
+    text-decoration:none;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .contacts__socials a:hover{color:var(--accent); border-color:var(--accent);}
+
+  .map{
+    overflow:hidden;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:var(--surface);
+  }
+  .map iframe{
+    display:block;
+    width:100%;
+    height:360px;
+    border:0;
+    filter:invert(1) hue-rotate(180deg) brightness(.9) saturate(.55) sepia(.15);
+  }
+  .map__link{
+    display:block;
+    padding:12px 16px;
+    border-top:1px solid var(--line);
+    font-size:13.5px;
+    color:var(--muted);
+    text-decoration:none;
+  }
+  .map__link:hover{color:var(--accent);}
+
+  /* ---------- Footer ---------- */
+  .footer{
+    padding:32px 0;
+    border-top:1px solid var(--line-soft);
+  }
+  .footer__inner{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px 24px;
+    align-items:center;
+    justify-content:space-between;
+    font-size:13.5px;
+    color:#9a9488;
+  }
+  .footer a{text-decoration:none;}
+  .footer a:hover{color:var(--accent);}
+
+  /* ---------- Анимации «прокрутки» при наведении ---------- */
+  @keyframes serviceScroll{
+    0%, 100%{ transform:translateY(0); }
+    50%{ transform:translateY(-8px); }
+  }
+  @keyframes photoScroll{
+    0%, 100%{ background-position:center 0%; }
+    50%{ background-position:center 100%; }
+  }
+  @keyframes masterBodyScroll{
+    0%, 100%{ transform:translateY(0); }
+    50%{ transform:translateY(-4px); }
+  }
+
+  @media (hover: hover) and (pointer: fine){
+    .service:hover{
+      border-color:#5a4a2c;
+      transform:translateY(-2px);
+    }
+    .service:hover .service__inner{
+      animation:serviceScroll 2.6s ease-in-out infinite;
+    }
+    .master:hover .master__photo{
+      animation:photoScroll 5s ease-in-out infinite;
+    }
+    .master:hover .master__body{
+      animation:masterBodyScroll 3.2s ease-in-out infinite;
+    }
+  }
+
+  /* ---------- Media ---------- */
+  @media (max-width:860px){
+    .booking,
+    .contacts{grid-template-columns:1fr;}
+    .booking__list{max-width:none;}
+    .booking__info p{max-width:none;}
+    body{background-attachment:scroll;}
+  }
+  @media (max-width:820px){
+    .nav{display:none;}
+  }
+  @media (max-width:560px){
+    .hero__stats{grid-template-columns:1fr; gap:14px;}
+    .hero__actions .btn{width:100%;}
+    .form__grid{grid-template-columns:1fr;}
+    .map iframe{height:300px;}
+    .header__inner{height:60px; gap:12px;}
+    .logo{font-size:15px; letter-spacing:.18em;}
+    .header__phone{font-size:14px;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important; animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container header__inner">
+    <a class="logo" href="#top">Борода<span>.</span></a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#services">Услуги</a>
+      <a href="#masters">Мастера</a>
+      <a href="#booking">Запись</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="header__phone" href="tel:+78432000000">+7 (843) 200-00-00</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Первый экран -->
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Барбершоп · Казань · с 2016 года</p>
+      <h1>Стрижка, борода и&nbsp;разговор без спешки</h1>
+      <p class="hero__lead">
+        Два мастера, три услуги и никакой суеты. Работаем на Баумана,
+        принимаем по записи — чтобы вы не ждали в очереди.
+      </p>
+      <div class="hero__actions">
+        <a class="btn" href="#booking">Записаться</a>
+        <a class="btn btn--ghost" href="#services">Услуги и цены</a>
+      </div>
+      <div class="hero__stats">
+        <div><strong>8 лет</strong><span>на Баумана</span></div>
+        <div><strong>2 мастера</strong><span>опыт от 7 лет</span></div>
+        <div><strong>10:00–21:00</strong><span>без выходных</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Услуги -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow">Прайс</p>
+        <h2>Услуги и цены</h2>
+        <p>Фиксированная стоимость, оплата после процедуры. В цену входит мытьё головы и укладка.</p>
+      </div>
+
+      <div class="services">
+        <article class="service">
+          <div class="service__inner">
+            <div class="service__top">
+              <h3 class="service__name">Стрижка</h3>
+              <span class="service__price">1500 ₽</span>
+            </div>
+            <p class="service__desc">Машинка и ножницы, консультация по форме, мытьё и укладка.</p>
+            <p class="service__time">≈ 50 минут</p>
+          </div>
+        </article>
+
+        <article class="service">
+          <div class="service__inner">
+            <div class="service__top">
+              <h3 class="service__name">Борода</h3>
+              <span class="service__price">900 ₽</span>
+            </div>
+            <p class="service__desc">Моделирование формы, окантовка, горячее полотенце и уход.</p>
+            <p class="service__time">≈ 30 минут</p>
+          </div>
+        </article>
+
+        <article class="service">
+          <div class="service__inner">
+            <div class="service__top">
+              <h3 class="service__name">Комплекс</h3>
+              <span class="service__price">2200 ₽</span>
+            </div>
+            <p class="service__desc">Стрижка и борода в один заход — выгоднее, чем по отдельности.</p>
+            <p class="service__time">≈ 80 минут</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Мастера -->
+  <section class="section" id="masters">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow">Команда</p>
+        <h2>Мастера</h2>
+        <p>Никакой ротации: записываетесь к конкретному человеку и возвращаетесь к нему же.</p>
+      </div>
+
+      <div class="masters">
+        <article class="master">
+          <div class="master__photo-wrap">
+            <div class="master__photo" role="img" aria-label="Фото мастера — заглушка"></div>
+          </div>
+          <div class="master__body">
+            <h3 class="master__name">Артём Ковалёв</h3>
+            <p class="master__role">Барбер · 9 лет опыта</p>
+            <p class="master__desc">Классические стрижки, фейды и работа с жёсткой бородой. Любит точную геометрию.</p>
+          </div>
+        </article>
+
+        <article class="master">
+          <div class="master__photo-wrap">
+            <div class="master__photo" role="img" aria-label="Фото мастера — заглушка"></div>
+          </div>
+          <div class="master__body">
+            <h3 class="master__name">Рустам Хайруллин</h3>
+            <p class="master__role">Барбер · 7 лет опыта</p>
+            <p class="master__desc">Текстурированные стрижки, удлинённые формы и укладка. Подскажет, как повторить дома.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Запись -->
+  <section class="section" id="booking">
+    <div class="container">
+      <div class="booking">
+        <div class="booking__info">
+          <p class="eyebrow">Запись</p>
+          <h2>Записаться к мастеру</h2>
+          <p>Оставьте заявку — перезвоним в течение 15 минут, подтвердим время и мастера.</p>
+          <ul class="booking__list">
+            <li>Запись на сегодня и ближайшие две недели</li>
+            <li>Отменить или перенести визит можно звонком</li>
+            <li>Оплата в салоне: картой или наличными</li>
+          </ul>
+        </div>
+
+        <form class="form" id="bookingForm" novalidate>
+          <div class="form__grid">
+            <div class="field">
+              <label for="name">Имя</label>
+              <input id="name" name="name" type="text" placeholder="Как к вам обращаться" autocomplete="name" required>
+            </div>
+
+            <div class="field">
+              <label for="phone">Телефон</label>
+              <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel" required>
+            </div>
+
+            <div class="field">
+              <label for="service">Услуга</label>
+              <select id="service" name="service" required>
+                <option value="" selected disabled>Выберите услугу</option>
+                <option value="Стрижка — 1500 ₽">Стрижка — 1500 ₽</option>
+                <option value="Борода — 900 ₽">Борода — 900 ₽</option>
+                <option value="Комплекс — 2200 ₽">Комплекс — 2200 ₽</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="time">Время</label>
+              <select id="time" name="time" required>
+                <option value="" selected disabled>Выберите время</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn" type="submit">Записаться</button>
+          <p class="form__note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+          <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Адрес и карта -->
+  <section class="section" id="contacts">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow">Контакты</p>
+        <h2>Как нас найти</h2>
+      </div>
+
+      <div class="contacts">
+        <div>
+          <dl class="contacts__list">
+            <div class="contacts__item">
+              <dt>Адрес</dt>
+              <dd>Казань, ул. Баумана, 15<br><span style="color:var(--muted); font-size:15px;">вход со двора, второй этаж</span></dd>
+            </div>
+            <div class="contacts__item">
+              <dt>Часы работы</dt>
+              <dd>Ежедневно, 10:00 — 21:00</dd>
+            </div>
+            <div class="contacts__item">
+              <dt>Телефон</dt>
+              <dd><a href="tel:+78432000000">+7 (843) 200-00-00</a></dd>
+            </div>
+          </dl>
+
+          <div class="contacts__socials">
+            <a href="https://t.me/" target="_blank" rel="noopener">Telegram</a>
+            <a href="https://vk.com/" target="_blank" rel="noopener">ВКонтакте</a>
+            <a href="https://wa.me/78432000000" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="map">
+          <iframe
+            title="Карта: Казань, ул. Баумана, 15"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=49.1080%2C55.7840%2C49.1280%2C55.7970&amp;layer=mapnik&amp;marker=55.7905%2C49.1180"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <a class="map__link" href="https://www.openstreetmap.org/?mlat=55.7905&amp;mlon=49.1180#map=17/55.7905/49.1180" target="_blank" rel="noopener">Открыть карту в новой вкладке →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <span>© 2026 Барбершоп «Борода», Казань</span>
+    <span><a href="tel:+78432000000">+7 (843) 200-00-00</a> · ежедневно 10:00–21:00</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* --- Генерация слотов времени: 10:00 — 20:00, шаг 30 минут --- */
+  var timeSelect = document.getElementById('time');
+  for (var h = 10; h <= 20; h++) {
+    for (var i = 0; i < 2; i++) {
+      if (h === 20 && i === 1) continue; // последний слот — 20:00
+      var minutes = i === 0 ? '00' : '30';
+      var value = (h < 10 ? '0' + h : h) + ':' + minutes;
+      var opt = document.createElement('option');
+      opt.value = value;
+      opt.textContent = value;
+      timeSelect.appendChild(opt);
+    }
+  }
+
+  /* --- Валидация и отправка формы --- */
+  var form = document.getElementById('bookingForm');
+  var status = document.getElementById('formStatus');
+  var nameInput = document.getElementById('name');
+  var phoneInput = document.getElementById('phone');
+
+  function setStatus(message, type) {
+    status.textContent = message;
+    status.className = 'form__status' + (type ? ' is-' + type : '');
+  }
+
+  function markInvalid(input) {
+    input.classList.add('is-invalid');
+    input.focus();
+  }
+
+  [nameInput, phoneInput].forEach(function (input) {
+    input.addEventListener('input', function () {
+      input.classList.remove('is-invalid');
+      if (status.classList.contains('is-error')) setStatus('', '');
+    });
+  });
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    var name = nameInput.value.trim();
+    var phone = phoneInput.value.trim();
+    var digits = phone.replace(/\D/g, '');
+
+    if (name.length < 2) {
+      setStatus('Пожалуйста, укажите имя.', 'error');
+      markInvalid(nameInput);
+      return;
+    }
+
+    if (digits.length < 11) {
+      setStatus('Введите телефон полностью — 11 цифр.', 'error');
+      markInvalid(phoneInput);
+      return;
+    }
+
+    if (!form.elements.service.value || !form.elements.time.value) {
+      setStatus('Выберите услугу и время.', 'error');
+      return;
+    }
+
+    setStatus(
+      name + ', заявка принята. Перезвоним на ' + phone + ' в течение 15 минут, чтобы подтвердить время.',
+      'success'
+    );
+    form.reset();
+  });
+})();
+</script>
+
+</body>
+</html>
